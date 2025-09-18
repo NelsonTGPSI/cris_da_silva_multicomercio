@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cris da Silva Multicomércio — Telemóveis em Luanda</title>
+  <meta name="description" content="Cris da Silva Multicomércio — venda de telemóveis Samsung e iPhone em Luanda e províncias. Modelos económicos a topo de gama. Contacte +244 936 042 626." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ====== Variáveis e reset ====== */
+    :root{
+        --bg: #fff; /* fundo branco */
+        --card: #f7f7f7; /* cartões claros */
+        --muted: #555; /* texto secundário escuro */
+        --accent: #00aaff;
+        --accent-2: #6fe7c1;
+        --glass: rgba(0,0,0,0.04); /* leve sombra */
+        --radius:14px;
+        --max-width:1100px;
+        --container-padding:24px;
+        color-scheme: light;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+        margin:0;
+        font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        background: var(--bg);
+        color:#222;
+        -webkit-font-smoothing:antialiased;
+        -moz-osx-font-smoothing:grayscale;
+        line-height:1.45;
+        padding-bottom:80px;
+    }
+
+    a{color:var(--accent); text-decoration:none}
+    img{max-width:100%; display:block}
+
+    /* ====== Layout ====== */
+    .wrap{max-width:var(--max-width); margin:30px auto; padding:0 var(--container-padding)}
+
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; padding:18px 0;
+    }
+
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{
+      width:54px; height:54px; border-radius:12px; display:grid; place-items:center;
+      background:linear-gradient(135deg,var(--accent),#005f9e);
+      box-shadow:0 6px 18px rgba(0,0,0,0.6);
+      font-weight:800; font-size:18px; color:white;
+    }
+    .brand h1{font-size:18px;margin:0}
+    .brand p{margin:0; font-size:12px; color:var(--muted)}
+
+    nav{display:flex; gap:18px; align-items:center}
+    nav a{font-weight:600; color:var(--muted); padding:8px 10px; border-radius:10px}
+    nav a:hover{color:var(--accent); background:rgba(255,255,255,0.02)}
+
+    /* Mobile menu */
+    .menu-btn{display:none; background:transparent; border:0; color:var(--muted); font-weight:700}
+
+    /* ====== Hero ====== */
+    .hero{
+      margin-top:10px; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius:18px; padding:28px; display:grid; grid-template-columns:1fr 360px; gap:24px; align-items:center;
+      box-shadow: 0 10px 40px rgba(2,6,23,0.6);
+    }
+    .hero h2{font-size:26px; margin:0 0 8px}
+    .hero p{color:var(--muted); margin:0 0 18px}
+    .cta{display:flex; gap:12px; align-items:center}
+    .btn{background:var(--accent); color:#042033; padding:10px 14px; border-radius:10px; font-weight:700; border:0}
+    .btn.secondary{background:transparent; color:var(--accent); border:1px solid rgba(255,255,255,0.04)}
+
+    .hero .contact-card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); padding:18px; border-radius:12px; text-align:center; box-shadow:inset 0 -1px 0 rgba(255,255,255,0.02)
+    }
+    .contact-card p{margin:8px 0; color:var(--muted)}
+    .tel{font-weight:800; font-size:18px; color:var(--accent-2)}
+
+    /* ====== Sections ====== */
+    section{margin-top:28px}
+    .section-head{display:flex; align-items:end; justify-content:space-between; gap:12px}
+    .section-head h3{margin:0}
+    .filters{display:flex; gap:8px}
+    .chip{background:var(--glass); padding:8px 12px; border-radius:999px; font-weight:600; color:var(--muted); cursor:pointer}
+    .chip.active{background:linear-gradient(90deg,var(--accent),#0067b8); color:#001219}
+
+    /* ====== Products grid ====== */
+    .grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-top:14px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); padding:12px; border-radius:12px; transition:transform .18s ease, box-shadow .18s ease; cursor:pointer}
+    .card:hover{transform:translateY(-6px); box-shadow:0 14px 30px rgba(0,0,0,0.6)}
+    .card .img-wrap{height:200px; border-radius:10px; overflow:hidden; background:linear-gradient(180deg,#071022,#0d1724); display:grid; place-items:center}
+    .card h4{margin:12px 0 6px; font-size:16px}
+    .price{font-weight:800; color:var(--accent-2)}
+
+    /* ====== About / Contact layout ====== */
+    .two-col{display:grid; grid-template-columns:1fr 420px; gap:20px; align-items:start}
+    .about p{color:var(--muted)}
+
+    form.card{padding:18px}
+    .form-row{display:flex; gap:8px; margin-bottom:10px}
+    input,textarea,select{width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:inherit}
+    textarea{min-height:120px; resize:vertical}
+    .small{font-size:13px; color:var(--muted)}
+
+    /* ====== Footer ====== */
+    footer{margin-top:28px; padding:20px 0; border-top:1px solid rgba(255,255,255,0.02); color:var(--muted); display:flex; justify-content:space-between; align-items:center}
+
+    /* ====== Modal product view ====== */
+    .modal{position:fixed; inset:0; display:none; place-items:center; background:linear-gradient(180deg, rgba(2,6,23,0.7), rgba(2,6,23,0.9)); z-index:90}
+    .modal.open{display:grid}
+    .modal-card{background:var(--card); padding:20px; border-radius:12px; max-width:880px; width:95%; display:grid; grid-template-columns:360px 1fr; gap:18px}
+    .modal-card img{height:320px; object-fit:cover; border-radius:10px}
+
+    /* ====== Responsive ====== */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr 1fr}
+      .two-col{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .modal-card{grid-template-columns:1fr}
+    }
+    @media (max-width:640px){
+      header{flex-direction:column; align-items:flex-start}
+      nav{display:none}
+      .menu-btn{display:inline-block}
+      .hero{grid-template-columns:1fr; padding:18px}
+      .grid{grid-template-columns:1fr}
+      .wrap{padding:0 16px}
+    }
+
+    /* small helper */
+    .muted{color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">CS</div>
+        <div>
+          <h1>Cris da Silva<br><small class="muted">Multicomércio</small></h1>
+          <p class="muted">Telemóveis Samsung & iPhone — Luanda e províncias</p>
+        </div>
+      </div>
+
+      <nav aria-label="Navegação principal">
+        <a href="#home">Início</a>
+        <a href="#produtos">Produtos</a>
+        <a href="#sobre">Sobre nós</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn">MENU</button>
+    </header>
+
+    <main>
+      <section id="home" class="hero" aria-labelledby="heroTitle">
+        <div>
+          <h2 id="heroTitle">Cris da Silva Multicomércio — Telemóveis para todas as necessidades</h2>
+          <p>Trabalhamos com Samsung e iPhone: desde modelos económicos com excelente relação qualidade/preço até topo de gama. Entregas em Luanda e envio para outras províncias.</p>
+
+          <div class="cta">
+            <a class="btn" href="#produtos">Ver produtos</a>
+            <a class="btn secondary" href="#contacto">Contacte-nos</a>
+          </div>
+
+          <div style="margin-top:18px" class="small muted">Telefone para encomendas e informações: <strong class="tel">+244 936 042 626</strong></div>
+        </div>
+
+        <aside class="contact-card" aria-label="Contacto rápido">
+          <div style="font-size:13px" class="muted">Atendimento</div>
+          <div class="tel">+244 936 042 626</div>
+          <p class="muted">Disponível em horário comercial. Também atendemos via WhatsApp e chamadas.</p>
+          <div style="margin-top:12px">
+            <a class="btn" href="tel:+244936042626">Ligar agora</a>
+          </div>
+        </aside>
+      </section>
+
+      <section id="produtos">
+        <div class="section-head">
+          <h3>Produtos em destaque</h3>
+          <div class="filters" role="tablist" aria-label="Filtrar produtos">
+            <button class="chip active" data-filter="all">Todos</button>
+            <button class="chip" data-filter="samsung">Samsung</button>
+            <button class="chip" data-filter="iphone">iPhone</button>
+            <button class="chip" data-filter="economico">Económicos</button>
+            <button class="chip" data-filter="top">Topo de gama</button>
+          </div>
+        </div>
+
+        <div class="grid" id="productsGrid">
+          <!-- Cards: cada cartão tem data-attributes para filtragem -->
+
+          <article class="card" tabindex="0" data-brand="samsung" data-tier="economico" data-name="Samsung Galaxy A14" data-price="Kz 75.000">
+            <div class="img-wrap"><img src="https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a14-4g-1.jpg" alt="Samsung Galaxy A14"></div>
+            <h4>Samsung Galaxy A14</h4>
+            <div class="small muted">Económico</div>
+            <div class="price">Kz 75.000</div>
+          </article>
+
+          <article class="card" tabindex="0" data-brand="samsung" data-tier="top" data-name="Samsung Galaxy S24" data-price="Kz 420.000">
+            <div class="img-wrap"><img src="https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s24-5g-1.jpg" alt="Samsung Galaxy S24"></div>
+            <h4>Samsung Galaxy S24</h4>
+            <div class="small muted">Topo de gama</div>
+            <div class="price">Kz 420.000</div>
+          </article>
+
+          <article class="card" tabindex="0" data-brand="iphone" data-tier="top" data-name="iPhone 15 Pro" data-price="Kz 550.000">
+            <div class="img-wrap"><img src="https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-15-pro-1.jpg" alt="iPhone 15 Pro"></div>
+            <h4>iPhone 15 Pro</h4>
+            <div class="small muted">Topo de gama</div>
+            <div class="price">Kz 550.000</div>
+          </article>
+
+          <article class="card" tabindex="0" data-brand="iphone" data-tier="economico" data-name="iPhone SE (2022)" data-price="Kz 150.000">
+            <div class="img-wrap"><img src="https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-se-2022-1.jpg" alt="iPhone SE"></div>
+            <h4>iPhone SE (2022)</h4>
+            <div class="small muted">Económico/Entrada</div>
+            <div class="price">Kz 150.000</div>
+          </article>
+
+          <article class="card" tabindex="0" data-brand="samsung" data-tier="top" data-name="Samsung Galaxy Z Flip" data-price="Kz 520.000">
+            <div class="img-wrap"><img src="https://image-us.samsung.com/SamsungUS/home/mobile/phones/galaxy-s/pdp/s24/gallery/001-galaxy-s24-ultra-phone-mo.jpg" alt="Samsung Galaxy Z Flip"></div>
+            <h4>Samsung Galaxy Z Flip</h4>
+            <div class="small muted">Topo de gama</div>
+            <div class="price">Kz 520.000</div>
+          </article>
+
+          <article class="card" tabindex="0" data-brand="iphone" data-tier="top" data-name="iPhone 14" data-price="Kz 330.000">
+            <div class="img-wrap"><img src="https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-14-1.jpg" alt="iPhone 14"></div>
+            <h4>iPhone 14</h4>
+            <div class="small muted">Topo de gama (anterior)</div>
+            <div class="price">Kz 330.000</div>
+          </article>
+
+        </div>
+
+        <div style="margin-top:12px" class="small muted">Preços indicativos. Contacte-nos para stock e ofertas actuais.</div>
+      </section>
+
+      <section id="sobre" class="about">
+        <div class="two-col">
+          <div>
+            <h3>Sobre nós</h3>
+            <p class="muted">A Cris da Silva Multicomércio é uma empresa com foco na distribuição e venda de telemóveis das marcas Samsung e Apple em Luanda, com atendimento e envios para outras províncias de Angola. Priorizamos produtos verificados, assistência de pós-venda e opções que vão do económico ao topo de gama.</p>
+
+            <h4 style="margin-top:16px">Missão</h4>
+            <p class="muted">Oferecer equipamentos móveis de qualidade e um serviço fiável, com aconselhamento honesto para que cada cliente encontre o telemóvel que melhor corresponde às suas necessidades e orçamento.</p>
+
+            <h4 style="margin-top:16px">Porquê escolher-nos?</h4>
+            <ul class="muted">
+              <li>Produtos selecionados: Samsung e iPhone.</li>
+              <li>Atendimento personalizado e assistência pós-venda.</li>
+              <li>Envios para províncias com acompanhamento.</li>
+            </ul>
+          </div>
+
+          <aside>
+            <div style="background:linear-gradient(180deg,#091422,#071022); padding:16px; border-radius:12px">
+              <h4>Informações de contacto</h4>
+              <p class="muted">Telefone/WhatsApp</p>
+              <div class="tel">+244 936 042 626</div>
+              <p class="muted" style="margin-top:12px">Local de atuação: Luanda (sede). Atendimento e envio para outras províncias mediante acordo.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="contacto">
+        <div class="section-head"><h3>Contacto</h3><div class="muted">Fale connosco — respondes com brevidade</div></div>
+
+        <div class="two-col" style="margin-top:12px">
+          <div>
+            <form id="contactForm" class="card" onsubmit="return false;" aria-label="Formulário de contacto">
+              <div class="form-row">
+                <input type="text" id="name" placeholder="Nome" required />
+              </div>
+              <div class="form-row">
+                <input type="tel" id="phone" placeholder="Telefone (ex: +244 9xx xxx xxx)" required />
+              </div>
+              <div class="form-row">
+                <input type="text" id="subject" placeholder="Assunto (ex: Pedido de preço, Stock)" />
+              </div>
+              <div class="form-row">
+                <textarea id="message" placeholder="Mensagem" required></textarea>
+              </div>
+              <div style="display:flex; gap:10px; align-items:center; justify-content:space-between">
+                <div class="small muted">Também pode ligar para <strong class="tel">+244 936 042 626</strong></div>
+                <div>
+                  <button class="btn" id="sendBtn">Enviar mensagem</button>
+                </div>
+              </div>
+
+              <div id="formMsg" class="small muted" style="margin-top:10px; display:none"></div>
+            </form>
+          </div>
+
+          <aside>
+            <div style="background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); padding:18px; border-radius:12px">
+              <h4>Atendimento</h4>
+              <p class="muted">Telefone/WhatsApp</p>
+              <div class="tel">+244 936 042 626</div>
+              <p class="muted" style="margin-top:12px">Horário: Segunda a Sexta (09:00–18:00). Fim-de-semana por marcação.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div>&copy; <span id="year"></span> Cris da Silva Multicomércio — Todos os direitos reservados</div>
+      <div class="muted">Telefone: <strong class="tel">+244 936 042 626</strong></div>
+    </footer>
+  </div>
+
+  <!-- Modal (produto) -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card" role="document">
+      <img id="modalImg" src="" alt="Imagem do produto">
+      <div>
+        <h3 id="modalName">Nome do produto</h3>
+        <div class="small muted" id="modalTier">Categoria</div>
+        <div style="margin-top:10px" class="price" id="modalPrice">Kz 0</div>
+        <p class="muted" style="margin-top:12px">Descrição: Contacte-nos para informações completas sobre o produto, garantia e condições de envio. Ligue ou envie uma mensagem via WhatsApp.</p>
+        <div style="margin-top:18px; display:flex; gap:8px">
+          <a class="btn" href="tel:+244936042626">Ligar</a>
+          <button class="btn secondary" id="closeModal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Inserir ano atual
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu basic behaviour (most simple: scroll to anchors)
+    const menuBtn = document.getElementById('menuBtn');
+    menuBtn.addEventListener('click', ()=>{
+      const nav = document.querySelector('nav');
+      if(getComputedStyle(nav).display === 'none'){
+        nav.style.display = 'flex';
+        nav.style.flexDirection = 'column';
+        nav.style.position = 'absolute';
+        nav.style.right = '24px';
+        nav.style.top = '84px';
+        nav.style.background = 'rgba(2,6,23,0.8)';
+        nav.style.padding = '12px';
+        nav.style.borderRadius = '10px';
+      } else {
+        nav.style.display = 'none';
+      }
+    });
+
+    // Produto: abrir modal com mais detalhes ao clicar
+    const cards = document.querySelectorAll('.card');
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+    const modalName = document.getElementById('modalName');
+    const modalTier = document.getElementById('modalTier');
+    const modalPrice = document.getElementById('modalPrice');
+    const closeModal = document.getElementById('closeModal');
+
+    cards.forEach(card=>{
+      card.addEventListener('click', ()=>{
+        const img = card.querySelector('img').src;
+        const name = card.dataset.name;
+        const price = card.dataset.price;
+        const tier = card.dataset.tier;
+        modalImg.src = img;
+        modalImg.alt = name;
+        modalName.textContent = name;
+        modalPrice.textContent = price;
+        modalTier.textContent = tier.charAt(0).toUpperCase() + tier.slice(1);
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+      });
+
+      // keyboard accessibility: abrir com Enter
+      card.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter') card.click();
+      });
+    });
+
+    closeModal.addEventListener('click', ()=>{ close(); });
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) close(); });
+    function close(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }
+
+    // Filtros
+    const chips = document.querySelectorAll('.chip');
+    const grid = document.getElementById('productsGrid');
+    chips.forEach(chip=>{
+      chip.addEventListener('click', ()=>{
+        chips.forEach(c=>c.classList.remove('active'));
+        chip.classList.add('active');
+        const filter = chip.dataset.filter;
+        filterProducts(filter);
+      });
+    });
+
+    function filterProducts(filter){
+      const all = Array.from(grid.children);
+      all.forEach(card=>{
+        const brand = card.dataset.brand;
+        const tier = card.dataset.tier;
+        let show = false;
+        if(filter === 'all') show = true;
+        if(filter === brand) show = true;
+        if(filter === tier) show = true;
+        card.style.display = show ? 'block' : 'none';
+      });
+    }
+
+    // Formulário: validação simples (não envia por enquanto)
+    const form = document.getElementById('contactForm');
+    const formMsg = document.getElementById('formMsg');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if(!name || !phone || !message){
+        showFormMsg('Por favor preencha os campos obrigatórios.', true);
+        return;
+      }
+      // Exemplo: preparar payload para envio (API não incluída)
+      const payload = {name, phone, message, subject: document.getElementById('subject').value.trim()};
+      console.log('Contacto (simulado):', payload);
+      showFormMsg('Mensagem recebida. Entraremos em contacto pelo telefone indicado.', false);
+      form.reset();
+    });
+
+    function showFormMsg(txt, isError){
+      formMsg.style.display = 'block';
+      formMsg.textContent = txt;
+      formMsg.style.color = isError ? '#ffb4b4' : 'var(--accent-2)';
+      setTimeout(()=>{ formMsg.style.display = 'none'; }, 8000);
+    }
+
+    // Acessibilidade: foco visual
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') close();
+    });
+
+  </script>
+  <style>
+        /* ====== Sobre - Informações de contacto ====== */
+    .about aside > div {
+    background: var(--accent);
+    color: #fff;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .about aside > div h4,
+    .about aside > div p,
+    .about aside > div .tel {
+    color: #fff !important;
+    }
+
+    /* ====== Footer otimizado ====== */
+    footer {
+    margin-top: 40px;
+    padding: 32px 0 20px 0;
+    border-top: 2px solid var(--accent);
+    background: var(--card);
+    color: #222;
+    text-align: center;
+    display: block;
+    font-size: 16px;
+    letter-spacing: 0.2px;
+    }
+    footer .tel {
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 18px;
+    display: inline-block;
+    margin-top: 8px;
+    }
+    footer .muted {
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 6px;
+    }
+    /* ====== Cartões e hero mais claros ====== */
+    .card {
+    background: var(--card);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .card .img-wrap {
+    background: #eee;
+    }
+    .hero,
+    .hero .contact-card {
+    background: #fff;
+    box-shadow: 0 10px 40px rgba(2,6,23,0.08);
+    }
+    .hero .contact-card {
+    border: 1px solid #e0e0e0;
+    }
+  </style>
+</body>
+</html>
